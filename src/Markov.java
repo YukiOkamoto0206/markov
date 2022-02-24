@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Markov {
@@ -46,16 +47,18 @@ public class Markov {
             e.printStackTrace();
         }
 
-        while (scan != null && scan.hasNext()) {
-            String input = scan.next();
-            System.out.println(input);
+        while (scan != null && scan.hasNextLine()) {
+            String input = scan.nextLine();
+            addLine(input);
         }
     }
 
-    protected void addLine(String s) {
-        if (s.length() == 0) return;
+    protected void addLine(String line) {
+        if (line.length() == 0) return;
         // split individual word
-        s.split(",");
+//        System.out.println(s);
+        String[] word = line.split(" ");
+
 //        for (){
 //          addword(word)
 //    }
