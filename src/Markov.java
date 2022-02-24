@@ -55,17 +55,16 @@ public class Markov {
 
     protected void addLine(String line) {
         if (line.length() == 0) return;
-        // split individual word
-//        System.out.println(s);
-        String[] word = line.split(" ");
+        String[] wordArr = line.split(" ");
 
-//        for (){
-//          addword(word)
-//    }
+        for (String word : wordArr) {
+            addWord(word);
+        }
     }
 
     protected void addWord(String s) {
         // ガチガチ
+//        System.out.println(s);
     }
 
     public String getSentence() {
