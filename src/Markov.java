@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class Markov {
@@ -10,12 +9,13 @@ public class Markov {
     private static final String PUNCTUATION_MARKS = ".!?";
     private HashMap<String, ArrayList<String>> words;
     private String prevWord;
+    private ArrayList<String> arr = new ArrayList<String>();
 
     public static void main(String[] args) {
         Markov markov = new Markov();
 
         markov.addFromFile("spam.txt");
-//        System.out.println(markov);
+        System.out.println(markov);
 
 //        for (int i = 0; i < 10; i ++){
 //            System.out.println(markov.getSentence());
@@ -62,9 +62,25 @@ public class Markov {
         }
     }
 
-    protected void addWord(String s) {
-        // ガチガチ
-//        System.out.println(s);
+    protected void addWord(String word) {
+        // check if it is punctuated or not
+        if (endsWithPunctuation(prevWord)) {
+            // current word is added under the PUNCTUATION key in the words HashMap.
+            words.put(prevWord, arr);
+            arr = new ArrayList<String>();
+
+        // not punctuated
+        } else {
+            // need to add it
+
+            // Words don't have prevWord
+            if (!words.containsKey(prevWord)) {
+                words.put(prevWord, new ArrayList<String>());
+            } else {
+                arr.add(word);
+            }
+        }
+        prevWord = word;
     }
 
     public String getSentence() {
@@ -75,15 +91,18 @@ public class Markov {
         return "";
     }
 
-    public boolean endsWithPunctuation(String s) {
-        return false;
+    public boolean endsWithPunctuation(String word) {
+        boolean isPunctuation = false;
+        try {
+            isPunctuation = word.contains(PUNCTUATION_MARKS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isPunctuation;
     }
 
     @Override
     public String toString() {
-        return "Markov{" +
-                "words=" + words +
-                ", prevWord='" + prevWord + '\'' +
-                '}';
+        return words + " " + arr;
     }
 }
