@@ -9,7 +9,6 @@ public class Markov {
     private static final String PUNCTUATION_MARKS = ".!?";
     private HashMap<String, ArrayList<String>> words;
     private String prevWord;
-    private ArrayList<String> arr = new ArrayList<String>();
 
     public static void main(String[] args) {
         Markov markov = new Markov();
@@ -66,21 +65,26 @@ public class Markov {
         // check if it is punctuated or not
         if (endsWithPunctuation(prevWord)) {
             // current word is added under the PUNCTUATION key in the words HashMap.
-            words.put(prevWord, arr);
-            arr = new ArrayList<String>();
-
+            words.get(PUNCTUATION).add(word);
+        }
         // not punctuated
-        } else {
-            // need to add it
-
-            // Words don't have prevWord
+        else {
+            // Words have prevWord
             if (!words.containsKey(prevWord)) {
                 words.put(prevWord, new ArrayList<String>());
-            } else {
-                arr.add(word);
             }
+            words.get(prevWord).add(word);
         }
         prevWord = word;
+//        if(endsWithPunctuation(prevWord)) {
+//            words.get(PUNCTUATION).add(word);
+//        } else {
+//            if (!words.containsKey(prevWord)) {
+//                words.put(prevWord, new ArrayList<String>());
+//            }
+//            words.get(prevWord).add(word);
+//        }
+//        prevWord = word;
     }
 
     public String getSentence() {
@@ -103,6 +107,6 @@ public class Markov {
 
     @Override
     public String toString() {
-        return words + " " + arr;
+        return words + "";
     }
 }
