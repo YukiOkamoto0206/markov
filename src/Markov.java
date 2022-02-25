@@ -25,9 +25,9 @@ public class Markov {
 
 //        System.out.println(randomWord("and"));
 
-//        for (int i = 0; i < 10; i ++){
-//            System.out.println(markov.getSentence());
-//        }
+        for (int i = 0; i < 10; i ++){
+            System.out.println(markov.getSentence());
+        }
 
     }
 
@@ -90,8 +90,14 @@ public class Markov {
     }
 
     public String getSentence() {
-
-        return "";
+        String sentence = "";
+        String random_word = randomWord(PUNCTUATION);
+        sentence += random_word;
+        while (!endsWithPunctuation(random_word)) {
+            random_word = randomWord(random_word);
+            sentence = sentence + " " + random_word;
+        }
+        return sentence;
     }
 
     protected String randomWord(String word) {
