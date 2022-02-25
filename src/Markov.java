@@ -73,18 +73,11 @@ public class Markov {
             if (!words.containsKey(prevWord)) {
                 words.put(prevWord, new ArrayList<String>());
             }
+        }
+        if (words.containsKey(prevWord)) {
             words.get(prevWord).add(word);
         }
         prevWord = word;
-//        if(endsWithPunctuation(prevWord)) {
-//            words.get(PUNCTUATION).add(word);
-//        } else {
-//            if (!words.containsKey(prevWord)) {
-//                words.put(prevWord, new ArrayList<String>());
-//            }
-//            words.get(prevWord).add(word);
-//        }
-//        prevWord = word;
     }
 
     public String getSentence() {
@@ -98,7 +91,7 @@ public class Markov {
     public boolean endsWithPunctuation(String word) {
         boolean isPunctuation = false;
         try {
-            isPunctuation = word.contains(PUNCTUATION_MARKS);
+            isPunctuation = PUNCTUATION_MARKS.contains(word.substring(word.length() - 1));
         } catch (Exception e) {
             e.printStackTrace();
         }
