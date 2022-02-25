@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Title: Markov.java
+ * Abstract: Markov Text Generation
+ * Author: Yuki Okamoto
+ * Date: Feb 24, 2022
+ */
 public class Markov {
     private static final String PUNCTUATION = "__$";
     private static final String PUNCTUATION_MARKS = ".!?";
