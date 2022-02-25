@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -21,6 +22,8 @@ public class Markov {
 
         markov.addFromFile("spam.txt");
         System.out.println(markov);
+
+//        System.out.println(randomWord("and"));
 
 //        for (int i = 0; i < 10; i ++){
 //            System.out.println(markov.getSentence());
@@ -87,14 +90,18 @@ public class Markov {
     }
 
     public String getSentence() {
+
         return "";
     }
 
-    protected static String randomWord(String s) {
-        return "";
+    protected String randomWord(String word) {
+        ArrayList<String> arrayList = words.get(word);
+        Random random = new Random();
+        int random_number = random.nextInt(arrayList.size());
+        return (String) arrayList.get(random_number);
     }
 
-    public boolean endsWithPunctuation(String word) {
+    public static boolean endsWithPunctuation(String word) {
         boolean isPunctuation = false;
         try {
             isPunctuation = PUNCTUATION_MARKS.contains(word.substring(word.length() - 1));
