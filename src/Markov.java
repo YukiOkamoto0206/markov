@@ -32,7 +32,7 @@ public class Markov {
     public Markov() {
         this.words = new HashMap<>() {
             {
-                put(PUNCTUATION, new ArrayList<String>());
+                put(PUNCTUATION, new ArrayList<>());
             }
         };
         this.prevWord = PUNCTUATION;
@@ -78,7 +78,7 @@ public class Markov {
         else {
             // Words have prevWord
             if (!words.containsKey(prevWord)) {
-                words.put(prevWord, new ArrayList<String>());
+                words.put(prevWord, new ArrayList<>());
             }
         }
         if (words.containsKey(prevWord)) {
@@ -102,7 +102,7 @@ public class Markov {
         ArrayList<String> arrayList = words.get(word);
         Random random = new Random();
         int random_number = random.nextInt(arrayList.size());
-        return (String) arrayList.get(random_number);
+        return arrayList.get(random_number);
     }
 
     public static boolean endsWithPunctuation(String word) {

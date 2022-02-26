@@ -54,14 +54,13 @@ public class MarkovTest {
 
         this.words = new HashMap<>() {
             {
-                put(PUNCTUATION, new ArrayList<String>());
+                put(PUNCTUATION, new ArrayList<>());
             }
         };
-        ArrayList<String> arrayList = new ArrayList<String>();
         words.get(PUNCTUATION).add("Hello");
-        words.put("Hello", new ArrayList<String>());
+        words.put("Hello", new ArrayList<>());
         words.get("Hello").add("World.");
 
-        assertTrue(words.equals(markov.getWords()));
+        assertEquals(words, markov.getWords());
     }
 }
