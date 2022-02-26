@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  * Title: Markov.java
- * Abstract: Markov Text Generation
+ * Abstract: Markov Text Generation main file
  * Author: Yuki Okamoto
  * Date: Feb 24, 2022
  */
@@ -21,9 +21,7 @@ public class Markov {
         Markov markov = new Markov();
 
         markov.addFromFile("spam.txt");
-        System.out.println(markov);
-
-//        System.out.println(randomWord("and"));
+        System.out.println(markov.getWords());
 
         for (int i = 0; i < 10; i ++){
             System.out.println(markov.getSentence());
@@ -112,7 +110,7 @@ public class Markov {
         try {
             isPunctuation = PUNCTUATION_MARKS.contains(word.substring(word.length() - 1));
         } catch (Exception e) {
-            e.printStackTrace();
+//            System.out.println(e);
         }
         return isPunctuation;
     }

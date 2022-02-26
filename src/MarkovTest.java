@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 /**
  * Title: MarkovTest.java
- * Abstract: Markov Text Generation
+ * Abstract: Markov Text Generation Test class
  * Author: Yuki Okamoto
  * Date: Feb 24, 2022
  */
