@@ -30,11 +30,8 @@ public class Markov {
     }
 
     public Markov() {
-        this.words = new HashMap<>() {
-            {
-                put(PUNCTUATION, new ArrayList<>());
-            }
-        };
+        this.words = new HashMap<>();
+        words.put(PUNCTUATION, new ArrayList<>());
         this.prevWord = PUNCTUATION;
     }
 
@@ -64,7 +61,10 @@ public class Markov {
         String[] wordArr = line.split(" ");
 
         for (String word : wordArr) {
-            addWord(word);
+            word = word.trim();
+            if (word.length() > 0) {
+                addWord(word);
+            }
         }
     }
 
@@ -80,8 +80,6 @@ public class Markov {
             if (!words.containsKey(prevWord)) {
                 words.put(prevWord, new ArrayList<>());
             }
-        }
-        if (words.containsKey(prevWord)) {
             words.get(prevWord).add(word);
         }
         prevWord = word;
